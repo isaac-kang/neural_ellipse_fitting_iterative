@@ -66,8 +66,10 @@ def run_test(sess, cdnet, FLAGS, mode='folder', frame_size=None, srcname=None,
         mask_dummy = mask_dummy.astype(np.float32) / 255.0
         mask_dummy = np.clip(mask_dummy * 1000, 0, 255.0)
         mask_dummy = mask_dummy[:, :, 0].astype(np.float32) / 255.0
-        network_input = np.concatenate((network_input, edge_map, mask_dummy), axis=-1)
-        network_input = np.array(network_input).reshape([1, IMAGE_HEIGHT, IMAGE_WIDTH, 5])
+        # network_input = np.concatenate((network_input, edge_map, mask_dummy), axis=-1)
+        network_input = np.concatenate((network_input, mask_dummy), axis=-1)
+        # network_input = np.array(network_input).reshape([1, IMAGE_HEIGHT, IMAGE_WIDTH, 5])
+        network_input = np.array(network_input).reshape([1, IMAGE_HEIGHT, IMAGE_WIDTH, 4])
 
 
         # Feedforward

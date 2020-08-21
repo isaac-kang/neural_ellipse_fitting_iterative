@@ -44,35 +44,20 @@ def draw_angle(img, center, radius, angle, angle_scale, grad_angle, r1_pts, r2_p
         # axis_y
         cv2.line(img[i], (r2_pts[i, 0], r2_pts[i, 1]), (r2_pts[i, 2], r2_pts[i, 3]), (1, 0, 1), thickness=1)
 
-        font = cv2.FONT_HERSHEY_SIMPLEX
-        text_angle = angle[i, 0] * 360
-        # cv2.putText(img[i], str(text_angle), (10, 10), font, 0.4, (0, 0, 0), 2, cv2.LINE_AA)
-        # text_grad_angle = grad_angle[0, i, 0]
-        # cv2.putText(img[i], str(text_grad_angle),  (10,30), font, 0.4, (0,0,0), 2, cv2.LINE_AA)
     return img
 
 
-def is_number_regex(s):
-    """ Returns True is string is a number. """
-    if re.match("^\d+?\.\d+?$", s) is None:
-        return s.isdigit()
-    return True
+# def is_number_regex(s):
+#     """ Returns True is string is a number. """
+#     if re.match("^\d+?\.\d+?$", s) is None:
+#         return s.isdigit()
+#     return True
 
 
 def ensure_dir(file_path):
     directory = os.path.dirname(file_path)
     if not os.path.exists(directory):
         os.makedirs(directory)
-
-
-def get_available_gpus():
-    from tensorflow.python.client import device_lib
-    local_device_protos = device_lib.list_local_devices()
-    result = [x.name for x in local_device_protos if x.device_type == 'GPU']
-    if len(result) > 0:
-        return result
-    return [x.name for x in local_device_protos]
-
 
 def tensor_size(tensor):
     from operator import mul

@@ -316,7 +316,7 @@ class TrainDataGenerator:
         canvas = (canvas / 255.0 - 0.5) * np.sqrt(2.0)
         canvas = canvas[:, :, ::-1]
         # concat with edge map
-        canvas = np.concatenate((canvas, edge_map), axis=-1)
+        # canvas = np.concatenate((canvas, edge_map), axis=-1)
         dict = {}
         dict["image"] = canvas # (224, 224, 4)
         dict["mask"] = mask
